@@ -1,25 +1,44 @@
 % notes.tex
 % template file for notetaking, functions relevant to differnent courses, etc.
 
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 %%%  PACKAGES %%%
 
 \usepackage{enumitem}
 \usepackage{wasysym}
-\usepackage{amsmath}
 \usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 
-
 \geometry{a4paper} % or letter or a5paper or ... etc
-% \geometry{landscape} % rotated page geometry
-
-
 
 %%% COMMANDS %%%
 
+% Shorthands of common commands
+\newcommand{\ul}{\underline} 
+\newcommand{\til}{$\sim$} % Tilde Symbol: ~
+\newcommand{\del}{$\vec{\Delta}$} % Delta symbol
 
+% bi command to create an itemize list
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
 
+% be command to create an enumerate list
+\newcommand{\be}{\begin{enumerate}[topsep=1em]}
+\newcommand{\ee}{\end{enumerate}}
+
+% Some common abbreviations (Biology)
+\newcommand{\mya}{million years ago}
+\newcommand{\bya}{billion years ago}
+\newcommand{\hoo}{$H_2O$ }
+
+% List styling 
+\setlist[1]{itemsep=1em}
+\setlist[2]{itemsep=0em}
+\setitemize[3]{label={\textperiodcentered}}
+
+% Command to create a new table with two left and right centred columns, lines and 1em of space 
+\newcommand{\bttwo}{\bgroup\def\arraystretch{1.5}\vspace{1.5em}\begin{tabular}{| l | l |}\hline}
+\newcommand{\ettwo}{\hline\end{tabular}\vspace{1.5em}\egroup}
 
 \begin{document}
 
