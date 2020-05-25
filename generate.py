@@ -147,28 +147,40 @@ def main():
         if projectData["type"] != "r" and projectData["type"] != "a" and projectData["type"] != "n":
             print("ERROR: value must be either r, a, n or ctl-c to quit")
     
-    #while projectData["author"] == "":
-    projectData["name"] = input("Enter your name: ")
+    while projectData["name"] == "":
+        projectData["name"] = input("Enter your name: ")
+        if projectData["name"] == "":
+            print("ERROR: must enter valid name")
 
-    #while projectData["studentnum"] == "":
-    projectData["studentnum"] = input("Enter your student number: ")
+    while projectData["studentnum"] == "":
+        projectData["studentnum"] = input("Enter your student number: ")
+        if projectData["studentnum"] == "":
+            print("ERROR: must enter valid student number")
 
     while projectData["title"] == "":
         projectData["title"] = input("Enter the title of the project: ")
         if projectData["title"] == "":
             print("ERROR: must enter valid title")
 
-    #while projectData["date"] == "":
-    projectData["date"] = input("Enter the due date or current date: ")
+    while projectData["date"] == "":
+        projectData["date"] = input("Enter the due date or current date: ")
+        if projectData["date"] == "":
+            print("ERROR: must enter valid date")
     
-    #while projectData["school"] == "":
-    projectData["school"] = input("Enter your school's name: ")
+    while projectData["school"] == "":
+        projectData["school"] = input("Enter your school's name: ")
+        if projectData["school"] == "":
+            print("ERROR: must enter valid school")
     
-    #while projectData["course"] == "":
-    projectData["course"] = input("Enter the course name: ")
+    while projectData["course"] == "":
+        projectData["course"] = input("Enter the course name: ")
+        if projectData["course"] == "":
+            print("ERROR: must enter valid course")
 
-    #while projectData["prof"] == "":
-    projectData["prof"] = input("Enter the professor's name: ")
+    while projectData["prof"] == "":
+        projectData["prof"] = input("Enter the professor's name: ")
+        if projectData["prof"] == "":
+            print("ERROR: must enter valid prof")
 
     generate(projectData)
     
