@@ -4,8 +4,6 @@
 # file that generates
 # the LaTeX files
 #
-# To-Do -> 
-#
 #---------------------#
 
 #----Dependencies----#
@@ -19,13 +17,75 @@ import pylatex
 from datetime import date
 
 def createReport(projectData):
-    shutil.copyfile("templates/report.tex")
+    # Types: name, studentnum, date, prof, course, title, school
+
+    fileName = projectData["title"] + "/main.tex"
+
+    shutil.copyfile("templates/report.tex", fileName)
+
+    # Read in the file
+    with open(fileName, "r") as file :
+        f = file.read()
+
+    # Replace the target string
+    f = f.replace("&NAME&", projectData["name"])
+    f = f.replace("&STUDENTNUM&", projectData["studentnum"])
+    f = f.replace("&DATE&", projectData["date"])
+    f = f.replace("&PROF&", projectData["prof"])
+    f = f.replace("&COURSE&", projectData["course"])
+    f = f.replace("&TITLE&", projectData["title"])
+    f = f.replace("&SCHOOL&", projectData["school"])
+
+    # Write the file out again
+    with open(fileName, "w") as file:
+        file.write(f)
     
 
 def createNotes(projectData):
+   # Types: name, date, prof, course, title
+
+    fileName = projectData["title"] + "/main.tex"
+
+    shutil.copyfile("templates/notes.tex", fileName)
+
+    # Read in the file
+    with open(fileName, "r") as file :
+        f = file.read()
+
+    # Replace the target string
+    f = f.replace("&NAME&", projectData["name"])
+    f = f.replace("&DATE&", projectData["date"])
+    f = f.replace("&PROF&", projectData["prof"])
+    f = f.replace("&COURSE&", projectData["course"])
+    f = f.replace("&TITLE&", projectData["title"])
+
+    # Write the file out again
+    with open(fileName, "w") as file:
+        file.write(f)
 
 
 def createAssignment(projectData):
+    # Types: name, studentnum, date, prof, course, title
+
+    fileName = projectData["title"] + "/main.tex"
+
+    shutil.copyfile("templates/assignment.tex", fileName)
+
+    # Read in the file
+    with open(fileName, "r") as file :
+        f = file.read()
+
+    # Replace the target string
+    f = f.replace("&NAME&", projectData["name"])
+    f = f.replace("&STUDENTNUM&", projectData["studentnum"])
+    f = f.replace("&DATE&", projectData["date"])
+    f = f.replace("&PROF&", projectData["prof"])
+    f = f.replace("&COURSE&", projectData["course"])
+    f = f.replace("&TITLE&", projectData["title"])
+
+    # Write the file out again
+    with open(fileName, "w") as file:
+        file.write(f)
 
 
 def createFolder(projectData):
@@ -40,8 +100,8 @@ def createFolder(projectData):
     infoFile = open(projectTitle + "/project_info.txt", "w+")
 
     infoFile.write("Type: " + projectData["type"] + "\n")
-    infoFile.write("Type: " + projectData["title"] + "\n")
-    infoFile.write("Author: " + projectData["author"] + "\n")
+    infoFile.write("Title: " + projectData["title"] + "\n")
+    infoFile.write("Name: " + projectData["name"] + "\n")
     infoFile.write("Student Number: " + projectData["studentnum"] + "\n")
     infoFile.write("Date: " + projectData["date"] + "\n")
     infoFile.write("School: " + projectData["school"] + "\n")
@@ -68,7 +128,7 @@ def generate(projectData):
     else:
         print("ERROR: no document type selected, please restart.")
 
-    # DONE !
+    print("Success! Created project directory: " + projectData["title"])
 
 
 
@@ -76,7 +136,7 @@ def generate(projectData):
 #--------Main--------#
 def main():
 
-    projectData = {"type": ""}
+    projectData = {"type": "", "name": "", "studentnum": "", "title": "", "date": "", "school": "", "course": "", "prof": ""}
     
     print("Welcome to G-TeX v.1")
     print("ctrl-c if you would not like to create a LaTeX project file in your current directory")
@@ -84,16 +144,30 @@ def main():
 
     while projectData["type"] != "r" and projectData["type"] != "a" and projectData["type"] != "n":
         projectData["type"] = input("Enter the type of project you want to make: ")
-
         if projectData["type"] != "r" and projectData["type"] != "a" and projectData["type"] != "n":
             print("ERROR: value must be either r, a, n or ctl-c to quit")
     
-    projectData["author"] = input("Enter your name: ")
+    #while projectData["author"] == "":
+    projectData["name"] = input("Enter your name: ")
+
+    #while projectData["studentnum"] == "":
     projectData["studentnum"] = input("Enter your student number: ")
-    projectData["title"] = input("Enter the title of the project: ")
+
+    while projectData["title"] == "":
+        projectData["title"] = input("Enter the title of the project: ")
+        if projectData["title"] == "":
+            print("ERROR: must enter valid title")
+
+    #while projectData["date"] == "":
     projectData["date"] = input("Enter the due date or current date: ")
-    projectData["university"] = input("Enter your school's name: ")
+    
+    #while projectData["school"] == "":
+    projectData["school"] = input("Enter your school's name: ")
+    
+    #while projectData["course"] == "":
     projectData["course"] = input("Enter the course name: ")
+
+    #while projectData["prof"] == "":
     projectData["prof"] = input("Enter the professor's name: ")
 
     generate(projectData)
