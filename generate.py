@@ -4,7 +4,7 @@
 # file that generates
 # the LaTeX files
 #
-# To-Do -> Generate LaTeX for project types
+# To-Do -> 
 #
 #---------------------#
 
@@ -18,6 +18,16 @@ import pylatex
 
 from datetime import date
 
+def createReport(projectData):
+    shutil.copyfile("templates/report.tex")
+    
+
+def createNotes(projectData):
+
+
+def createAssignment(projectData):
+
+
 def createFolder(projectData):
 
     projectTitle = projectData["title"]
@@ -30,6 +40,7 @@ def createFolder(projectData):
     infoFile = open(projectTitle + "/project_info.txt", "w+")
 
     infoFile.write("Type: " + projectData["type"] + "\n")
+    infoFile.write("Type: " + projectData["title"] + "\n")
     infoFile.write("Author: " + projectData["author"] + "\n")
     infoFile.write("Student Number: " + projectData["studentnum"] + "\n")
     infoFile.write("Date: " + projectData["date"] + "\n")
@@ -41,9 +52,6 @@ def createFolder(projectData):
 
     infoFile.close()
 
-    
-
-
 
 #----Generates Project---#
 
@@ -51,7 +59,14 @@ def generate(projectData):
 
     createFolder(projectData)
 
-    #createFiles(projectData)
+    if projectData["type"] == "r":
+        createReport(projectData)
+    elif projectData["type"] == "n":
+        createNotes(projectData)
+    elif projectData["type"] == "a":
+        createAssignment(projectData)
+    else:
+        print("ERROR: no document type selected, please restart.")
 
     # DONE !
 
