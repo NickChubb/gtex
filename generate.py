@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #-----generate.py-----#
 #
 # This is the main py
